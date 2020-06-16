@@ -15,108 +15,167 @@ using namespace std;
 int main()
 {
 
+
 //////////////////////////////////////start...............
 
-	ll n;
-	cin>>n;
+int y;
+int n;
+int l;
+int r;
+int flag;
+char ch,ch2,ch3,ch4;
+	
+	cin >> n;
 
-	 ll l=1; ll r=n;ll y; int flag=0; char ch;
-	 char prev;
-	 cout<<"0"<<endl;
-	 cin>>ch;
-	 prev=ch;
-	 for(int i=1;i<=20;i++)
-	  {
-	  	cout<<i<<endl;
-	  	cin>>ch;
-	  	if(ch=='E')
-	  	  return 0;
-	  	else if(ch!=prev && i%2==0)
-	  	{   flag=2;
-	  		break;
-		  }
-	  	
-	  }
-	  if(flag==0)
-	    flag==1;
-	 
-	 
-	  
-int ask=0;
-char ch2,ck,ck2;
-	while(true)
-	{ 
-	 if(ask==0)
-	 { y=l+(r-l)/2;
+	 l=1;  r=n;
+      flag=-1;
+
+
+	 while(true)
+	 {
+	  y=l+(r-l)/2;
 	 	cout<<y<<endl;
-		cin>>ch;
-		cout<<y+2<<endl;
-		cin>>ch2;
-		cout<<y+1<<endl;
-		cin>>ck;
-		cout<<y+3<<endl;
-		cin>>ck2;
+	 	fflush(stdout);
+        cin>>ch;
+
+        if(ch=='E')
+       { flag=0;
+         break;
+       }
+
+        cout<<y+1<<endl;
+        fflush(stdout);
+        cin>>ch2;
+
+        if(ch2=='E')
+         { flag=0;
+           break;
+          }
+       
+      else if(ch==ch2)
+        {
+        	if(ch=='G')
+        		l=y+1+1;
+        	else
+        	   r=y-1;
+
+        
+        }
+        else
+        { 
+		flag=1;
+        	break;
+        }
+
+
+
+
+	 }
 	 
-	  if(ch=='E'|| ch2=='E' || ck=='E' || ck2=='E')
-	     return 0;
-      else 
-      {
-      	if(ch!=ch2 && y%2==0)
-      	 flag=2;
-      	else if(ch!=ch2 && y%2!=0)
-      	 flag=1;
-        else if(ck!=ck2 && y%2!=0)
-      	 flag=1;
-      	 else if(ck!=ck2 && y%2==0)
-      	 flag=2;
-      	else
-      	  ask==0;
-	  }
+	 if(flag==0)
+	   return 0;
+
+
+     if(flag==1)
+	{
+      cout<<y-1<<endl;
+      fflush(stdout);
+	  cin>>ch3;
+	   if(ch3=='E')
+	    return 0;
 	  
- }
-  else if(ask==2)
-    {
-    	y=l+(r-l)/2;
-    	cout<<y<<endl;
-		cin>>ch;
-	}
-	 else
-	  {
-	  	cout<<y<<endl;
-		cin>>ch;
-	  }
-		
-      if(y%2==0 && flag==2)
-		{
-		 y=y+1;ask=1;
+	  if(ch3==ch)
+	   {
+	   	if(y%2==0)
+	   	 flag=1;
+	   	else
+	   	 flag=2;
+	   }
+	   else
+	    { if(y%2==0)
+	       flag=2;
+	      else
+	       flag=1;
+	    	
 		}
-      else if(y%2!=0 && flag==1)
-        {
-		 y=y+1;ask=1;
-		 } 
-      else if(ch=='G')     
-        {
-		l=y+1;
-        if(flag==1 || flag==2)
-           ask=2;
-        else
-          ask=0;
-          
-		 } 
-      else if(ch=='L')
-         {
-       	r=y-1; 
-		if(flag==1 || flag==2)
-           ask=2;
-        else
-          ask=0;
-          
+	  	
+     }
+     
+    if(flag==0)
+     return 0;
+     
+     if(flag!=0)
+     {                                                                           
+     	if(ch3=='G' )
+     	  l=y+1+1;
+     	else 
+     	  r=y-1-1;
+     
+	 
+	 
+	while(true)
+  	{ int bad=1;
+		 y=l+(r-l)/2;
+     	   cout<<y<<endl;
+     	   fflush(stdout);
+     	    cin>>ch;
+     	 
+     	 if(ch=='E')
+     	   { flag=0;
+            break;
+           }
+     	  
+     	  if(y%2==0 && flag==2)
+     	   {
+     	    cout<<y+1<<endl;
+     	    fflush(stdout);
+     	    cin>>ch2;
+     	    bad=2;
+			  }
+		else if(y%2!=0 && flag==1)
+		{
+			cout<<y+1<<endl;
+			fflush(stdout);
+     	      cin>>ch2;
+     	      bad=2;
+  		}
+     	 if(ch2=='E')
+     	    { flag=0;
+              break;
+             }
+     	    
+     	if(bad==2)
+     	{ if(ch2=='G')
+     	     l=y+1+1;
+     	 else
+     	    r=y-1;
+     	    
+     	    
 		 }
-      else
-        return 0;
-	 	
-	      	
-}
+		else
+		  {
+		  	if(ch=='G')
+		  	  l=y+1;
+		  	else
+		  	  r=y-1;
+		  }
+     	
+    
+     		
+     		
+		 }
+     		
+     	
+     	
+	 }
+     
+if(flag==0)
+ return 0;
+    
+
+   
+
+
 
 
 /////////////////////////////end................................... ....
